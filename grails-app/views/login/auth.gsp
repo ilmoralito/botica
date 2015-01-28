@@ -6,6 +6,9 @@
 	<title><g:message code="springSecurity.login.title"/></title>
 </head>
 <body>
+	<h3>${grailsApplication.config.ni.org.mina.application.name}</h3>
+	<h4>${grailsApplication.config.ni.org.mina.application.label}</h4>
+
 	<form action='${postUrl}' method='POST' id='loginForm' autocomplete='off'>
 		<div class="form-group">
 			<label for="username" class="sr-only"><g:message code="springSecurity.login.username.label"/></label>

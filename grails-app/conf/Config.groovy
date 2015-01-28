@@ -116,6 +116,9 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
+//app configs
+ni.org.mina.application.name = "BOTICA'S NAME"
+ni.org.mina.application.label = "Lorem ipsum dolor sit amet"
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'ni.org.mina.User'
