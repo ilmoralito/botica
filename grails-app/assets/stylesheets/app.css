@@ -1,0 +1,13 @@
+/*
+*= require bootstrap
+*= require_self
+*/
+
+body {
+	padding-top: 45px;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
