@@ -5,7 +5,11 @@ class BootStrap {
   	def adminRole =  new Role(authority:"ROLE_ADMIN").save(failOnError:true)
   	def userRole =  new Role(authority:"ROLE_USER").save(failOnError:true)
 
-  	def testUser = new User(username:"me", password:"password").save(failOnError:true)
+  	def testUser = new User(
+      username:"me",
+      fullName:"John Doe",
+      password:"password"
+    ).save(failOnError:true)
 
   	UserRole.create testUser, adminRole, true
 
