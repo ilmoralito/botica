@@ -5,11 +5,13 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_ADMIN'])
 class UserController {
 	def springSecurityService
+
 	static defaultAction = "profile"
-	static allowedMethods = {
+	static allowedMethods = [
 		profile:["GET", "POST"],
-		updatePassword:"POST"
-	}
+		updatePassword:"POST",
+		list:["GET", "POST"]
+	]
 
   def profile() {
   	def user = springSecurityService.currentUser
@@ -37,6 +39,12 @@ class UserController {
   	user.save()
 
   	redirect action:"profile"
+  }
+
+  def list() {
+  	def users = User.list()
+
+  	[users:users]
   }
 }
 
