@@ -7,7 +7,8 @@ class UserController {
 	def springSecurityService
 	static defaultAction = "profile"
 	static allowedMethods = {
-		profile:["GET", "POST"]
+		profile:["GET", "POST"],
+		updatePassword:"POST"
 	}
 
   def profile() {
@@ -25,4 +26,35 @@ class UserController {
 
   	[user:user]
   }
+
+  def updatePassword(UpdatePassword command) {
+  	if (command.hasErrors()) {
+  		command.errors.allErrors.each { error -> log.error "[$error.field:$error.defaultMessage]" }
+  	}
+
+  	def user = springSecurityService.currentUser
+  	user.password = command.password
+  	user.save()
+
+  	redirect action:"profile"
+  }
+}
+
+class UpdatePassword {
+	def passwordEncoder
+	def springSecurityService
+
+	String password
+	String newPassword
+	String confirmNewPassword
+
+	static constraints = {
+		password blank:false, validator:{val, obj ->
+			obj.passwordEncoder.isPasswordValid(obj.springSecurityService.currentUser.password, val, null)
+		}
+		newPassword blank:false
+		confirmNewPassword blank:false, validator:{ val, obj ->
+			val == obj.newPassword
+		}
+	}
 }

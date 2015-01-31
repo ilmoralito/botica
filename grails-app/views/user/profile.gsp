@@ -22,7 +22,7 @@
 		</g:form>
 		
 		<h4>Actualizar clave</h4>
-		<g:form autocomplete="off">
+		<g:form action="updatePassword" autocomplete="off">
 			<div class="form-group">
 				<label for="password" class="sr-only">password</label>
 				<g:passwordField name="password" class="form-control" placeholder="Clave actual"/>
