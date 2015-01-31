@@ -25,7 +25,7 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="#">Perfil</a></li>
+	            <li><g:link controller="user">Perfil</g:link></li>
 	            <li><a href="#">Administrar usuarios</a></li>
 	            <li class="divider"></li>
 	            <li><a href="#">Salir</a></li>
