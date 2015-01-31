@@ -12,7 +12,7 @@
 	<form action='${postUrl}' method='POST' id='loginForm' autocomplete='off'>
 		<div class="form-group">
 			<label for="username" class="sr-only"><g:message code="springSecurity.login.username.label"/></label>
-			<g:textField name="j_username" id="username" class="form-control" placeholder="Username"/>
+			<g:textField name="j_username" id="username" class="form-control" placeholder="Username" autofocus="true"/>
 		</div>
 
 		<div class="form-group">
