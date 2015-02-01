@@ -46,28 +46,40 @@ class UserController {
   }
 
   def list() {
-  	def users
+  	def users = []
 
-  	if (request.method == "GET") {
-  		users = User.list()
-  	} else {
-  		def criteria = User.createCriteria()
+  	if (request.method == "POST") {
   		def roles = params.list("roles")
   		def enabledState = params.list("enabledState")*.toBoolean()
 
-  		users = criteria {
-  			if (roles) {
-  				
-  			}
+      if (roles && !enabledState) {
+        def query = UserRole.where {
+          role.authority in roles
+        }
+  			
+        users = query.list().user
+      } else if (enabledState && !roles) {
+  		 	def query = User.where {
+          enabled in enabledState
+        }
 
-  			if (enabledState) {
-  				or {
-  					eq "enabled", enabledState[0]
-  					eq "enabled", enabledState[1]
-  				}
-  			}
-  		}
-  	}
+        users = query.list()
+      } else if (roles && enabledState) {
+        def query = UserRole.where {
+          role.authority in roles
+        }
+        
+        def results = query.list().user
+
+        users = results.findAll { u ->
+          u.enabled in enabledState
+        }
+      } else {
+        users = User.list()
+      }
+    } else {
+      users = User.list()
+    }
 
   	[users:users]
   }

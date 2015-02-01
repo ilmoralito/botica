@@ -8,38 +8,43 @@
 <body>
 	<div class="row">
 		<div class="col-md-10">
-			<h4>Usuarios</h4>
-			<table class="table table-hover">
-				<colgroup>
-					<col span="1" style="width: 1%;">
-					<col span="1" style="width: 39%;">
-					<col span="1" style="width: 20%;">
-					<col span="1" style="width: 20%;">
-					<col span="1" style="width: 20%;">
-				</colgroup>
-				<thead>
-					<th></th>
-					<th>Nombre completo</th>
-					<th>Nombre de usuario</th>
-					<th>Estado</th>
-					<th>Roles</th>
-				</thead>
-				<tbody>
-					<g:each in="${users}" var="user">
-						<tr>
-							<td>
-								<g:link action="show" id="${user.id}">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</g:link>
-							</td>
-							<td>${user.fullName}</td>
-							<td>${user.username}</td>
-							<td><botica:userStatus enabled="${user.enabled}"/></td>
-							<td>${user.authorities.authority.join(", ")}</td>
-						</tr>
-					</g:each>
-				</tbody>
-			</table>
+			<g:if test="${users}">
+				<h4>Usuarios</h4>
+				<table class="table table-hover">
+					<colgroup>
+						<col span="1" style="width: 1%;">
+						<col span="1" style="width: 30%;">
+						<col span="1" style="width: 30%;">
+						<col span="1" style="width: 30%;">
+						<col span="1" style="width: 9%;">
+					</colgroup>
+					<thead>
+						<th></th>
+						<th>Nombre completo</th>
+						<th>Nombre de usuario</th>
+						<th>Roles</th>
+						<th>Estado</th>
+					</thead>
+					<tbody>
+						<g:each in="${users}" var="user">
+							<tr>
+								<td>
+									<g:link action="show" id="${user.id}">
+										<span class="glyphicon glyphicon-pencil"></span>
+									</g:link>
+								</td>
+								<td>${user.fullName}</td>
+								<td>${user.username}</td>
+								<td>${user.authorities.authority.join(", ")}</td>
+								<td><botica:userStatus enabled="${user.enabled}"/></td>
+							</tr>
+						</g:each>
+					</tbody>
+				</table>
+			</g:if>
+			<g:else>
+				<h4>No hay resultados</h4>
+			</g:else>
 		</div>
 		<div class="col-md-2">
 		<h4>Nuevo usuario</h4>
@@ -54,13 +59,13 @@
 				<h5>Por rol</h5>
 				<div class="checkbox">
 					<label>
-						<g:checkBox name="roles" value="ROLE_ADMIN" checked="false"/>
+						<g:checkBox name="roles" value="ROLE_ADMIN" checked="${params?.roles?.contains('ROLE_ADMIN')}"/>
 						Administrador
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<g:checkBox name="roles" value="ROLE_USER" checked="false"/>
+						<g:checkBox name="roles" value="ROLE_USER" checked="${params?.roles?.contains('ROLE_USER')}"/>
 						Usuario
 					</label>
 				</div>
