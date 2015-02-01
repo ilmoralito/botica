@@ -12,7 +12,8 @@
 				<div class="col-md-12">
 					<p class="pull-right">
 						<g:link action="toggleEnabledState" id="${user?.id}" class="btn btn-warning">
-							<botica:userStatus enabled="${user?.enabled}"/> <span class="glyphicon glyphicon-trash"></span>
+							<span class="glyphicon glyphicon-repeat"></span>
+							<botica:userStatus enabled="${user?.enabled}"/>
 						</g:link>
 					</p>
 				</div>
