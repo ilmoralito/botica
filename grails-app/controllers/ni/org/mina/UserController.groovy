@@ -10,7 +10,7 @@ class UserController {
 	static allowedMethods = [
 		profile:["GET", "POST"],
 		updatePassword:"POST",
-		list:"GET",
+		list:["GET", "POST"],
 		save:"POST",
 		show:"GET",
 		toggleEnabledState:"GET",
@@ -46,7 +46,28 @@ class UserController {
   }
 
   def list() {
-  	def users = User.list()
+  	def users
+
+  	if (request.method == "GET") {
+  		users = User.list()
+  	} else {
+  		def criteria = User.createCriteria()
+  		def roles = params.list("roles")
+  		def enabledState = params.list("enabledState")*.toBoolean()
+
+  		users = criteria {
+  			if (roles) {
+  				
+  			}
+
+  			if (enabledState) {
+  				or {
+  					eq "enabled", enabledState[0]
+  					eq "enabled", enabledState[1]
+  				}
+  			}
+  		}
+  	}
 
   	[users:users]
   }

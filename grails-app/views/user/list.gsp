@@ -42,10 +42,44 @@
 			</table>
 		</div>
 		<div class="col-md-2">
+		<h4>Nuevo usuario</h4>
 			<g:form action="save" autocomplete="off">
 				<g:render template="form"/>
 
 				<g:submitButton name="submit" value="Agregar usuario" class="btn btn-primary btn-block"/>
+			</g:form>
+
+			<h4>Filtrar</h4>
+			<g:form action="list">
+				<h5>Por rol</h5>
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="roles" value="ROLE_ADMIN" checked="false"/>
+						Administrador
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="roles" value="ROLE_USER" checked="false"/>
+						Usuario
+					</label>
+				</div>
+
+				<h5>Por estado</h5>
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="enabledState" value="true" checked="${params?.enabledState?.contains('true')}"/>
+						Activos
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="enabledState" value="false" checked="${params?.enabledState?.contains('false')}"/>
+						Inactivos
+					</label>
+				</div>
+
+				<button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-filter"></span> Filtrar</button>
 			</g:form>
 		</div>
 	</div>
