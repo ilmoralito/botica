@@ -13,7 +13,8 @@ class UserController {
 		list:"GET",
 		save:"POST",
 		show:"GET",
-		toggleEnabledState:"GET"
+		toggleEnabledState:"GET",
+		update:"POST"
 	]
 
   def profile() {
@@ -81,11 +82,40 @@ class UserController {
   	[user:user]
   }
 
-  def toggleEnabledState(Integer id) {
+  def update(Integer id) {
   	def user = User.get id
 
   	if (!user) {
   		response.senError 404
+  	}
+
+  	def roles = params.list("roles")
+
+  	if (roles) {
+  		user.properties["username", "fullName"] = params
+
+  		if (!user.save()) {
+  			redirect action:"show", id:id
+  			return
+  		}
+
+  		UserRole.removeAll user, true
+
+  		roles.each { role ->
+	  		UserRole.create user, Role.findByAuthority(role), true
+	  	}
+  	} else {
+  		flash.message = "Seleccione rol"
+  	}
+
+  	redirect action:"show", id:id
+  }
+
+  def toggleEnabledState(Integer id) {
+  	def user = User.get id
+
+  	if (!user) {
+  		response.sendError 404
   	}
 
   	user.enabled = !user?.enabled

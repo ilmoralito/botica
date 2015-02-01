@@ -19,6 +19,7 @@
 			</div>
 
 			<g:form action="update" autocomplete="off">
+				<g:hiddenField name="id" value="${user?.id}"/>
 				<g:render template="form"/>
 
 				<g:submitButton name="submit" value="Confirmar" class="btn btn-primary"/>
