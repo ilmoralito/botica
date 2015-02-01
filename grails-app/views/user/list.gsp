@@ -27,7 +27,11 @@
 				<tbody>
 					<g:each in="${users}" var="user">
 						<tr>
-							<td><g:link action="show" id="${user.id}">+</g:link></td>
+							<td>
+								<g:link action="show" id="${user.id}">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</g:link>
+							</td>
 							<td>${user.fullName}</td>
 							<td>${user.username}</td>
 							<td><botica:userStatus enabled="${user.enabled}"/></td>
@@ -40,18 +44,6 @@
 		<div class="col-md-2">
 			<g:form action="save" autocomplete="off">
 				<g:render template="form"/>
-				<div class="checkbox">
-					<label>
-						<g:checkBox name="roles" value="ROLE_ADMIN" checked="false"/>
-						Administrador
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<g:checkBox name="roles" value="ROLE_USER" checked="false"/>
-						Usuario
-					</label>
-				</div>
 
 				<g:submitButton name="submit" value="Agregar usuario" class="btn btn-primary btn-block"/>
 			</g:form>

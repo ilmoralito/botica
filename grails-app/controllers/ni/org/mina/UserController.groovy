@@ -11,7 +11,9 @@ class UserController {
 		profile:["GET", "POST"],
 		updatePassword:"POST",
 		list:"GET",
-		save:"POST"
+		save:"POST",
+		show:"GET",
+		toggleEnabledState:"GET"
 	]
 
   def profile() {
@@ -67,6 +69,29 @@ class UserController {
   	}
 
   	redirect action:"list"
+  }
+
+  def show(Integer id) {
+  	def user = User.get id
+
+  	if (!user) {
+  		response.senError 404
+  	}
+
+  	[user:user]
+  }
+
+  def toggleEnabledState(Integer id) {
+  	def user = User.get id
+
+  	if (!user) {
+  		response.senError 404
+  	}
+
+  	user.enabled = !user?.enabled
+  	user.save(flush:true)
+
+  	redirect action:"show", id:id
   }
 }
 
