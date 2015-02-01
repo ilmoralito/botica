@@ -10,8 +10,15 @@
 		<div class="col-md-10">
 			<h4>Usuarios</h4>
 			<table class="table table-hover">
+				<colgroup>
+					<col span="1" style="width: 1%;">
+					<col span="1" style="width: 39%;">
+					<col span="1" style="width: 20%;">
+					<col span="1" style="width: 20%;">
+					<col span="1" style="width: 20%;">
+				</colgroup>
 				<thead>
-					<th width="1"></th>
+					<th></th>
 					<th>Nombre completo</th>
 					<th>Nombre de usuario</th>
 					<th>Estado</th>
@@ -24,14 +31,30 @@
 							<td>${user.fullName}</td>
 							<td>${user.username}</td>
 							<td><botica:userStatus enabled="${user.enabled}"/></td>
-							<td>${user.authorities.authority.join(" ")}</td>
+							<td>${user.authorities.authority.join(", ")}</td>
 						</tr>
 					</g:each>
 				</tbody>
 			</table>
 		</div>
 		<div class="col-md-2">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam doloribus vitae nulla minus temporibus ab mollitia, officia accusantium illo earum aliquid, quisquam corporis saepe ipsa magni consequuntur fugiat. Quis, animi.
+			<g:form action="save" autocomplete="off">
+				<g:render template="form"/>
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="roles" value="ROLE_ADMIN" checked="false"/>
+						Administrador
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="roles" value="ROLE_USER" checked="false"/>
+						Usuario
+					</label>
+				</div>
+
+				<g:submitButton name="submit" value="Agregar usuario" class="btn btn-primary btn-block"/>
+			</g:form>
 		</div>
 	</div>
 </body>

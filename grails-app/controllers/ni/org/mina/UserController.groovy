@@ -10,7 +10,8 @@ class UserController {
 	static allowedMethods = [
 		profile:["GET", "POST"],
 		updatePassword:"POST",
-		list:["GET", "POST"]
+		list:"GET",
+		save:"POST"
 	]
 
   def profile() {
@@ -45,6 +46,27 @@ class UserController {
   	def users = User.list()
 
   	[users:users]
+  }
+
+  def save() {
+  	def roles = params.list("roles")
+
+  	if (roles) {
+	  	params.password = "123"
+	  	def user = new User(params)
+
+	  	if (!user.save()) {
+	  		user.errors.allErrors.each { error -> log.error "[$error.field:$error.defaultMessage]" }
+	  	}
+
+	  	roles.each { role ->
+	  		UserRole.create user, Role.findByAuthority(role), true
+	  	}
+  	} else {
+  		flash.message = "Seleccione rol"
+  	}
+
+  	redirect action:"list"
   }
 }
 
