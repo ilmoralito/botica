@@ -25,8 +25,12 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><g:link controller="user">Perfil</g:link></li>
-	            <li><g:link controller="user" action="list">Administrar usuarios</g:link></li>
+	            <li class="${actionName == 'profile' ? 'active' : ''}">
+	            	<g:link controller="user">Perfil</g:link>
+	            </li>
+	            <li class="${controllerName == 'user' && actionName == 'list' ? 'active' : ''}">
+	            	<g:link controller="user" action="list">Administrar usuarios</g:link>
+	            </li>
 	            <li class="divider"></li>
 	            <li><a href="#">Salir</a></li>
 	          </ul>
@@ -38,7 +42,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque dolores placeat fuga, ratione laborum quibusdam nulla omnis eum temporibus, facere eveniet tempore illo quas, assumenda culpa impedit alias magnam asperiores.
+				<!--sidebar-->
+				<ul class="nav nav-pills nav-stacked">
+					<li class="${controllerName == 'distributor' ? 'active' : ''}">
+						<g:link controller="dealer">Distribuidores</g:link>
+					</li>
+				</ul>
 			</div>
 			<div class="col-md-10">
 				<g:layoutBody/>
