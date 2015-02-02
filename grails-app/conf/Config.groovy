@@ -119,6 +119,7 @@ log4j.main = {
 //app configs
 ni.org.mina.application.name = "BOTICA'S NAME"
 ni.org.mina.application.label = "Lorem ipsum dolor sit amet"
+grails.plugin.springsecurity.logout.postOnly = false
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'ni.org.mina.User'

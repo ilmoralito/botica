@@ -32,7 +32,7 @@
 	            	<g:link controller="user" action="list">Administrar usuarios</g:link>
 	            </li>
 	            <li class="divider"></li>
-	            <li><a href="#">Salir</a></li>
+	            <li><g:link controller="logout">Salir</g:link></li>
 	          </ul>
 	        </li>
 	      </ul>
