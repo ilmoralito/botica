@@ -61,15 +61,15 @@
 				</div>
 				<div class="form-group">
 					<label for="movistar" class="sr-only">Movistar</label>
-					<g:textField name="movistar" value="${dealer?.telephones?.movistar}" class="form-control" placeholder="Movistar"/>
+					<g:textField name="telephones.movistar" value="${dealer?.telephones?.movistar}" class="form-control" placeholder="Movistar"/>
 				</div>
 				<div class="form-group">
 					<label for="claro" class="sr-only">Claro</label>
-					<g:textField name="claro" value="${dealer?.telephones?.claro}" class="form-control" placeholder="Claro"/>
+					<g:textField name="telephones.claro" value="${dealer?.telephones?.claro}" class="form-control" placeholder="Claro"/>
 				</div>
 				<div class="form-group">
 					<label for="convencional" class="sr-only">Convencional</label>
-					<g:textField name="convencional" value="${dealer?.telephones?.convencional}" class="form-control" placeholder="Convencional"/>
+					<g:textField name="telephones.convencional" value="${dealer?.telephones?.convencional}" class="form-control" placeholder="Convencional"/>
 				</div>
 
 				<g:submitButton name="submit" value="Agregar" class="btn btn-primary btn-block"/>

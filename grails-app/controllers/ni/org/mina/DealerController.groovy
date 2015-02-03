@@ -15,12 +15,13 @@ class DealerController {
   }
 
   def save() {
-  	Map telephones = params.subMap(["movistar", "claro", "convencional"]).findAll { it.value }
-  	Map data = params.subMap(["name", "email", "address"])
+  	def telephones = params.telephones.findAll { it.value }
+  	def data = params.subMap(["name", "email", "address"])
+  	data["telephones"] = telephones
 
-		def dealer = new Dealer(name:params?.name, email:params?.email, address:params?.address, telephones:telephones)
+  	def dealer = new Dealer(data)
 
-		if (!dealer.save()) {
+		if (!dealer.save(flush:true)) {
 			chain action:"list", model:[dealer:dealer]
 			return
 		}
