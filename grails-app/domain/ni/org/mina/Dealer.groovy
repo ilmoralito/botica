@@ -19,7 +19,7 @@ class Dealer {
   static constraints = {
   	name blank:false, unique:true
     email email:true, unique:true, blank:false
-    address blank:false
+    address blank:false, unique:true
     telephones validator: {telephones ->
       if (!telephones.size()) { "notMatch" }
     }
