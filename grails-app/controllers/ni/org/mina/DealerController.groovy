@@ -6,10 +6,26 @@ import grails.plugin.springsecurity.annotation.Secured
 class DealerController {
 	static defaultAction = "list"
 	static allowedMethods = [
-		list:"GET"
+		list:"GET",
+		save:"POST"
 	]
 
   def list() {
   	[dealers:Dealer.list()]
+  }
+
+  def save() {
+  	Map telephones = params.subMap(["movistar", "claro", "convencional"]).findAll { it.value }
+  	Map data = params.subMap(["name", "email", "address"])
+
+		def dealer = new Dealer(name:params?.name, email:params?.email, address:params?.address, telephones:telephones)
+
+		if (!dealer.save()) {
+			dealer.errors.allErrors.each { error -> log.error "[$error.field:$error.defaultMessage]" }
+			chain action:"list", model:[dealer:dealer]
+			return
+		}
+
+  	redirect action:"list"
   }
 }
