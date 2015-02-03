@@ -17,7 +17,7 @@
 
 		<div class="form-group">
 			<label for="password" class="sr-only"><g:message code="springSecurity.login.password.label"/></label>
-			<g:textField name="j_password" id="password" class="form-control" placeholder="Password"/>
+			<g:passwordField name="j_password" id="password" class="form-control" placeholder="Password"/>
 		</div>
 
 		<div class="checkbox">
