@@ -44,7 +44,7 @@
 			<div class="col-md-2">
 				<!--sidebar-->
 				<ul class="nav nav-pills nav-stacked">
-					<li class="${controllerName == 'distributor' ? 'active' : ''}">
+					<li class="${controllerName == 'dealer' ? 'active' : ''}">
 						<g:link controller="dealer">Distribuidores</g:link>
 					</li>
 				</ul>
