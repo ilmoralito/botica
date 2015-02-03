@@ -20,6 +20,9 @@ class Dealer {
   	name blank:false, unique:true
     email email:true, unique:true, blank:false
     address blank:false
+    telephones validator: {telephones ->
+      if (!telephones.size()) { "notMatch" }
+    }
   }
 
   static mapping = {
