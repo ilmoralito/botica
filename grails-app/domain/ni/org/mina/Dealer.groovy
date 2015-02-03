@@ -21,7 +21,7 @@ class Dealer {
     email email:true, unique:true, blank:false
     address blank:false, unique:true
     telephones validator: {telephones ->
-      if (!telephones.size()) { "notMatch" }
+      if (!telephones?.size()) { "notMatch" }
     }
   }
 
