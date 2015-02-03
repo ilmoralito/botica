@@ -9,6 +9,8 @@ class Dealer {
     obj, source -> source["name"]?.toLowerCase()?.tokenize(" ")*.capitalize()?.join(" ")
   })
 	String name
+  String email
+  String address
 	Map telephones
 
 	Date dateCreated
@@ -16,6 +18,8 @@ class Dealer {
 
   static constraints = {
   	name blank:false, unique:true
+    email email:true, unique:true, blank:false
+    address blank:false
   }
 
   static mapping = {
