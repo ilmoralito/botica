@@ -10,6 +10,6 @@ class DealerController {
 	]
 
   def list() {
-
+  	[dealers:Dealer.list()]
   }
 }

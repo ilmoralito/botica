@@ -31,6 +31,21 @@ class BootStrap {
   	assert User.count() == 3
   	assert Role.count() == 2
   	assert UserRole.count() == 3
+
+    //dealers
+    def dealerOne = new Dealer(
+      name:"la baratera",
+      email:"labaratera@hotmail.ni",
+      address:"Some address",
+      telephones:["Claro":"57654389", "Movistar":"88767600", "Convencional":"23114455"]
+    ).save(failOnError:true)
+
+    def dealerTwo = new Dealer(
+      name:"la guadalupama",
+      email:"laguadalupana@gmail.com",
+      address:"Another address",
+      telephones:["Convencional":"23114455"]
+    ).save(failOnError:true)
   }
   def destroy = {
   }
