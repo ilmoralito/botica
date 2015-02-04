@@ -25,6 +25,8 @@ class Dealer {
     }
   }
 
+  static hasMany = [laboratories:Laboratory]
+
   static mapping = {
   	version false
   }

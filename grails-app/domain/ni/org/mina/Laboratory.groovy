@@ -11,4 +11,7 @@ class Laboratory {
   static constraints = {
   	name blank:false, unique:true
   }
+
+  static hasMany = [dealers:Dealer]
+  static belongsTo = Dealer
 }

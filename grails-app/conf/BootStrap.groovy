@@ -33,21 +33,20 @@ class BootStrap {
   	assert UserRole.count() == 3
 
     //dealers
-    def dealerOne = new Dealer(
+    def dealer1 = new Dealer(
       name:"la baratera",
       email:"labaratera@hotmail.ni",
       address:"Some address",
       telephones:["claro":"57654389", "movistar":"88767600", "convencional":"23114455"]
-    ).save(failOnError:true)
+    )
 
-    def dealerTwo = new Dealer(
+    def dealer2 = new Dealer(
       name:"la guadalupama",
       email:"laguadalupana@gmail.com",
       address:"Another address",
       telephones:["convencional":"23114455"]
     ).save(failOnError:true)
 
-    assert Dealer.count() == 2
 
     //labs
     def lab1 = new Laboratory(name:"lab1").save(failOnError:true)
@@ -55,6 +54,20 @@ class BootStrap {
     def lab3 = new Laboratory(name:"lab3").save(failOnError:true)
 
     assert Laboratory.count() == 3
+
+    //labs in dealer
+    dealer1
+      .addToLaboratories(lab1)
+      .addToLaboratories(lab2)
+      .save(failOnError:true)
+
+    dealer2
+      .addToLaboratories(lab1)
+      .addToLaboratories(lab2)
+      .addToLaboratories(lab3)
+      .save(failOnError:true)
+    
+    assert Dealer.count() == 2
   }
   def destroy = {
   }
