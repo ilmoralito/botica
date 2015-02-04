@@ -7,7 +7,8 @@ class DealerController {
 	static defaultAction = "list"
 	static allowedMethods = [
 		list:"GET",
-		save:"POST"
+		save:"POST",
+		show:"GET"
 	]
 
   def list() {
@@ -27,5 +28,43 @@ class DealerController {
 		}
 
   	redirect action:"list"
+  }
+
+  def show(Integer id) {
+  	def dealer = Dealer.get id
+
+  	if (!dealer) {
+  		response.sendError 404
+  	}
+
+  	[dealer:dealer]
+  }
+
+  def update(Integer id) {
+  	def dealer = Dealer.get id
+
+  	if (!dealer) {
+  		response.sendError 404
+  	}
+
+  	
+  	dealer.name = params?.name
+  	dealer.email = params?.email
+  	dealer.address = params?.address
+  	params?.telephones?.each { operator, phoneNumber ->
+  		if (phoneNumber) {
+  			dealer.telephones[operator] = phoneNumber
+  		} else {
+  			dealer.telephones.remove(operator)
+  		}
+  	}
+
+  	if (!dealer.save(flush:true)) {
+  		dealer.errors.allErrors.each { e ->
+  			log.error "[$e.field:$e.defaultMessage]"
+  		}
+  	}
+
+  	redirect action:"show", id:id
   }
 }

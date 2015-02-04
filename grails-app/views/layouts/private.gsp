@@ -51,6 +51,8 @@
 			</div>
 			<div class="col-md-10">
 				<g:layoutBody/>
+
+				
 			</div>
 		</div>
 	</div>

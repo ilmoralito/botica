@@ -11,14 +11,12 @@
 			<g:if test="${dealers}">
 				<table class="table table-hover">
 					<colgroup>
-						<col span="1" style="width: 1%;">
 						<col span="1" style="width: 25%;">
 						<col span="1" style="width: 25%;">
 						<col span="1" style="width: 25%;">
-						<col span="1" style="width: 24%;">
+						<col span="1" style="width: 25%;">
 					</colgroup>
 					<thead>
-						<th></th>
 						<th>Nombre</th>
 						<th>Email</th>
 						<th>Direccion</th>
@@ -27,13 +25,12 @@
 					<tbody>
 						<g:each in="${dealers}" var="dealer">
 							<tr>
-								<td><g:link action="show" id="${dealer.id}"><span class="glyphicon glyphicon-pencil"></span></g:link></td>
-								<td>${dealer.name}</td>
+								<td><g:link action="show" id="${dealer.id}">${dealer.name}</g:link></td>
 								<td>${dealer.email}</td>
 								<td>${dealer.address}</td>
 								<td>
 									<g:each in="${dealer.telephones.keySet()}" var="o">
-										${o[0]}:${dealer.telephones[o]}
+										${o[0].toUpperCase()}:${dealer.telephones[o]}
 									</g:each>
 								</td>
 							</tr>
@@ -47,30 +44,7 @@
 		</div>
 		<div class="col-md-2">
 			<g:form action="save" autocomplete="off">
-				<div class="form-group">
-					<label for="name" class="sr-only">Name</label>
-					<g:textField name="name" value="${dealer?.name}" class="form-control" placeholder="Nombre"/>
-				</div>
-				<div class="form-group">
-					<label for="email" class="sr-only">Email</label>
-					<g:textField name="email" value="${dealer?.email}" class="form-control" placeholder="Email"/>
-				</div>
-				<div class="form-group">
-					<label for="address" class="sr-only">Address</label>
-					<g:textField name="address" value="${dealer?.address}" class="form-control" placeholder="Direccion"/>
-				</div>
-				<div class="form-group">
-					<label for="movistar" class="sr-only">Movistar</label>
-					<g:textField name="telephones.movistar" value="${dealer?.telephones?.movistar}" class="form-control" placeholder="Movistar"/>
-				</div>
-				<div class="form-group">
-					<label for="claro" class="sr-only">Claro</label>
-					<g:textField name="telephones.claro" value="${dealer?.telephones?.claro}" class="form-control" placeholder="Claro"/>
-				</div>
-				<div class="form-group">
-					<label for="convencional" class="sr-only">Convencional</label>
-					<g:textField name="telephones.convencional" value="${dealer?.telephones?.convencional}" class="form-control" placeholder="Convencional"/>
-				</div>
+				<g:render template="form"/>
 
 				<g:submitButton name="submit" value="Agregar" class="btn btn-primary btn-block"/>
 			</g:form>

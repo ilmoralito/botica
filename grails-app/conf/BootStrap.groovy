@@ -37,14 +37,14 @@ class BootStrap {
       name:"la baratera",
       email:"labaratera@hotmail.ni",
       address:"Some address",
-      telephones:["Claro":"57654389", "Movistar":"88767600", "Convencional":"23114455"]
+      telephones:["claro":"57654389", "movistar":"88767600", "convencional":"23114455"]
     ).save(failOnError:true)
 
     def dealerTwo = new Dealer(
       name:"la guadalupama",
       email:"laguadalupana@gmail.com",
       address:"Another address",
-      telephones:["Convencional":"23114455"]
+      telephones:["convencional":"23114455"]
     ).save(failOnError:true)
   }
   def destroy = {
