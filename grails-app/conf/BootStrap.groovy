@@ -46,6 +46,15 @@ class BootStrap {
       address:"Another address",
       telephones:["convencional":"23114455"]
     ).save(failOnError:true)
+
+    assert Dealer.count() == 2
+
+    //labs
+    def lab1 = new Laboratory(name:"lab1").save(failOnError:true)
+    def lab2 = new Laboratory(name:"lab2").save(failOnError:true)
+    def lab3 = new Laboratory(name:"lab3").save(failOnError:true)
+
+    assert Laboratory.count() == 3
   }
   def destroy = {
   }

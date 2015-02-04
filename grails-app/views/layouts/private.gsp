@@ -47,6 +47,9 @@
 					<li class="${controllerName == 'dealer' ? 'active' : ''}">
 						<g:link controller="dealer">Distribuidores</g:link>
 					</li>
+					<li class="${controllerName == 'laboratory' ? 'active' : ''}">
+						<g:link controller="laboratory">Laboratorios</g:link>
+					</li>
 				</ul>
 			</div>
 			<div class="col-md-10">
