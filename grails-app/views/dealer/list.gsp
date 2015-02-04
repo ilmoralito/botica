@@ -10,29 +10,13 @@
 		<div class="col-md-10">
 			<g:if test="${dealers}">
 				<table class="table table-hover">
-					<colgroup>
-						<col span="1" style="width: 25%;">
-						<col span="1" style="width: 25%;">
-						<col span="1" style="width: 25%;">
-						<col span="1" style="width: 25%;">
-					</colgroup>
 					<thead>
 						<th>Nombre</th>
-						<th>Email</th>
-						<th>Direccion</th>
-						<th>Telefonos</th>
 					</thead>
 					<tbody>
 						<g:each in="${dealers}" var="dealer">
 							<tr>
 								<td><g:link action="show" id="${dealer.id}">${dealer.name}</g:link></td>
-								<td>${dealer.email}</td>
-								<td>${dealer.address}</td>
-								<td>
-									<g:each in="${dealer.telephones.keySet()}" var="o">
-										${o[0].toUpperCase()}:${dealer.telephones[o]}
-									</g:each>
-								</td>
 							</tr>
 						</g:each>
 					</tbody>
