@@ -7,7 +7,9 @@ class LaboratoryController {
 	static defaultAction = "list"
 	static allowedMethods = [
 		list:"GET",
-		save:"POST"
+		save:"POST",
+		show:"GET",
+		update:"POST"
 	]
 
   def list() {
@@ -23,5 +25,28 @@ class LaboratoryController {
   	}
 
   	redirect action:"list"
+  }
+
+  def show(Integer id) {
+  	def laboratory = Laboratory.get id
+
+  	if (!laboratory) {
+  		response.sendError 404
+  	}
+
+  	[laboratory:laboratory]
+  }
+
+  def update(Integer id) {
+  	def laboratory = Laboratory.get id
+
+  	if (!laboratory) {
+  		response.sendError 404
+  	}
+
+  	laboratory.name = params?.name
+  	laboratory.save(flush:true)
+
+  	redirect action:"show", id:id
   }
 }

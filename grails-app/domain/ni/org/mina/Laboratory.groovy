@@ -12,6 +12,10 @@ class Laboratory {
   	name blank:false, unique:true
   }
 
+  def beforeUpdate() {
+  	name = name.toUpperCase()
+  }
+
   static hasMany = [dealers:Dealer]
   static belongsTo = Dealer
 }
