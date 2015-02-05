@@ -11,6 +11,17 @@ class LaboratoryController {
 	]
 
   def list() {
-  	[labs:Laboratory.list()]
+  	[laboratories:Laboratory.list()]
+  }
+
+  def save() {
+  	def laboratory = new Laboratory(params)
+
+  	if (!laboratory.save()) {
+  		chain action:"list", model:[laboratory:laboratory]
+  		return
+  	}
+
+  	redirect action:"list"
   }
 }
