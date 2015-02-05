@@ -45,7 +45,7 @@ class BootStrap {
       email:"laguadalupana@gmail.com",
       address:"Another address",
       telephones:["convencional":"23114455"]
-    ).save(failOnError:true)
+    )
 
 
     //labs

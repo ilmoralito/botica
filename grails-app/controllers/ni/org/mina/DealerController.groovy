@@ -12,7 +12,7 @@ class DealerController {
 	]
 
   def list() {
-  	[dealers:Dealer.list()]
+  	[dealers:Dealer.list(), laboratories:Laboratory.list()]
   }
 
   def save() {
@@ -21,6 +21,12 @@ class DealerController {
   	data["telephones"] = telephones
 
   	def dealer = new Dealer(data)
+
+    params?.laboratories?.each { laboratory ->
+      def lab = Laboratory.get laboratory
+
+      dealer.addToLaboratories lab
+    }
 
 		if (!dealer.save(flush:true)) {
 			chain action:"list", model:[dealer:dealer]
@@ -37,7 +43,7 @@ class DealerController {
   		response.sendError 404
   	}
 
-  	[dealer:dealer]
+  	[dealer:dealer, laboratories:Laboratory.list()]
   }
 
   def update(Integer id) {
@@ -58,6 +64,12 @@ class DealerController {
   			dealer.telephones.remove(operator)
   		}
   	}
+    dealer.laboratories.clear()
+    params?.laboratories?.each { laboratory ->
+      def lab = Laboratory.get laboratory
+
+      dealer.addToLaboratories lab
+    }
 
   	if (!dealer.save(flush:true)) {
   		dealer.errors.allErrors.each { e ->

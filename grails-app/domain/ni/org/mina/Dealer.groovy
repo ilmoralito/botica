@@ -20,8 +20,11 @@ class Dealer {
   	name blank:false, unique:true
     email email:true, unique:true, blank:false
     address blank:false, unique:true
-    telephones validator: {telephones ->
+    telephones validator: { telephones ->
       if (!telephones?.size()) { "notMatch" }
+    }
+    laboratories validator:{ laboratories ->
+      if (!laboratories?.size()) { "notMatch" }
     }
   }
 
@@ -29,5 +32,6 @@ class Dealer {
 
   static mapping = {
   	version false
+    items cascade: "all-delete-orphan"
   }
 }
