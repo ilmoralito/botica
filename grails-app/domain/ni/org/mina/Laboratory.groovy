@@ -8,6 +8,9 @@ class Laboratory {
   })
 	String name
 
+  Date dateCreated
+  Date lastUpdated
+
   static constraints = {
   	name blank:false, unique:true
   }
@@ -16,6 +19,6 @@ class Laboratory {
   	name = name.toUpperCase()
   }
 
-  static hasMany = [dealers:Dealer]
+  static hasMany = [dealers:Dealer, medicaments:Medicament]
   static belongsTo = Dealer
 }
