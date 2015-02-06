@@ -68,6 +68,25 @@ class BootStrap {
       .save(failOnError:true)
     
     assert Dealer.count() == 2
+
+    //clients
+    def client1 = new Client(
+      fullName:"Juan Perez",
+      address:"Juna Perez address",
+      idCard:"201-290180-0001w",
+      telephones:["23114455","88676578"])
+    .save(failOnError:true)
+    
+    def client2 = new Client(
+      fullName:"Juan Perez Mendoza",
+      address:"Juna Perez Mendoza address",
+      idCard:"201-290180-00s1w",
+      telephones:["23456789","88626238"])
+    .save(failOnError:true)
+
+     def client3 = new Client( fullName:"John Doe" ).save(failOnError:true)
+
+    assert Client.count() == 3
   }
   def destroy = {
   }
