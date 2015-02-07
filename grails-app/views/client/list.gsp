@@ -33,6 +33,26 @@
 				<g:submitButton name="submit" value="Agregar" class="btn btn-primary btn-block"/>
 			</g:form>
 
+			<g:form action="list">
+				<h4>Filtrar</h4>
+				<h5>Por perfil</h5>
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="profile" value="true" checked="${params?.profile?.contains("true")}"/>
+						Completo
+					</label>
+				</div>
+
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="profile" value="false" checked="${params?.profile?.contains("false")}"/>
+						Sin completar
+					</label>
+				</div>
+
+				<button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-filter"></span> Filtrar</button>
+				</g:form>
+
 			<g:hasErrors bean="${client}">
 				<g:eachError bean="${client}">
 					<p><small><g:message error="${it}"/></small></p>

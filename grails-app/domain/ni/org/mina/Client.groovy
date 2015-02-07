@@ -27,4 +27,14 @@ class Client {
   }
 
   static hasMany = [telephones:String]
+
+  Boolean isClientProfileCompleted(status) {
+  	def p = status.toBoolean()
+
+		if (p) {
+			this.properties.every { it.value.asBoolean() }
+		} else {
+			this.properties.any { !it.value.asBoolean() }
+		}
+  }
 }
