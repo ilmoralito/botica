@@ -14,27 +14,43 @@ class Client {
     	source["idCard"]?.toUpperCase()
     })
   String idCard
-  SortedSet telephones
+  Telephone movistar
+  Telephone claro
+  Telephone convencional
 
   Date dateCreated
   Date lastUpdated
 
+  static embedded = ["movistar", "claro", "convencional"]
+
   static constraints = {
   	fullName blank:false
-  	address nullable:true
+  	address nullable:true, unique:true
   	idCard nullable:true, unique:true
-  	telephones nullable:true
+    movistar nullable:true
+    claro nullable:true
+    convencional nullable:true
   }
 
-  static hasMany = [telephones:String]
+  static mapping = {
+    sort dateCreated: "desc"
+  }
 
   Boolean isClientProfileCompleted(status) {
-  	def p = status.toBoolean()
-
-		if (p) {
-			this.properties.every { it.value.asBoolean() }
+		if (status.toBoolean()) {
+			this.properties.idCard && this.properties.address && (this.properties.movistar || this.properties.claro || this.properties.convencional)
 		} else {
-			this.properties.any { !it.value.asBoolean() }
+			!this.properties.idCard
 		}
+  }
+}
+
+class Telephone {
+  String number
+
+  static constraints = {
+    number unique:true, validator: { number ->
+      number?.size() == 8
+    }
   }
 }

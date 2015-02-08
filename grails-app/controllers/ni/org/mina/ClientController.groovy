@@ -6,7 +6,8 @@ import grails.plugin.springsecurity.annotation.Secured
 class ClientController {
 	static defaultAction = "list"
 	static allowedMethods = [
-		list:["GET", "POST"]
+		list:["GET", "POST"],
+		save:"POST"
 	]
 
   def list() {
@@ -22,4 +23,33 @@ class ClientController {
   	
   	[clients:results ?: clients]
   }
+
+  def save(CreateClient command) {
+  	if (command.hasErrors()) {
+  		command.errors.allErrors.each { error ->
+  			log.error "[$error.field:$error.defaultMessage]"
+  		}
+  	}
+
+  	client.save()
+  	redirect action:"list"
+  }
+}
+
+class CreateClient {
+	String fullName
+	String address
+	String idCard
+	SortedSet telephones
+
+	static constraints = {
+		fullName blank:false
+		address blank:false, unique:true
+		idCard blank:false, unique:true
+		telephones validator: { telephones ->
+			if (!telephones?.size()) {
+				"notMatch"
+			}
+		}
+	}
 }

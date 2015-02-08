@@ -11,13 +11,11 @@
 			<g:if test="${clients}">
 				<table class="table table-hover">
 					<thead>
-						<th width="1"></th>
 						<th>Nombre completo</th>
 					</thead>
 					<tbody>
-						<g:each in="${clients}" var="client" status="i">
+						<g:each in="${clients}" var="client">
 							<tr>
-								<td>${i + 1}</td>
 								<td><g:link action="show" id="${client.id}">${client.fullName}</g:link></td>
 							</tr>
 						</g:each>
@@ -30,6 +28,36 @@
 		</div>
 		<div class="col-md-2">
 			<g:form action="save" autocomplete="off">
+				<div class="form-group">
+					<label for="fullName" class="sr-only">fullName</label>
+					<g:textField name="fullName" value="${client?.fullName}" class="form-control" placeholder="Nombre completo" autofocus="true"/>
+				</div>
+
+				<div class="form-group">
+					<label for="address" class="sr-only">address</label>
+					<g:textField name="address" value="${client?.address}" class="form-control" placeholder="Direccion"/>
+				</div>
+
+				<div class="form-group">
+					<label for="idCard" class="sr-only">idCard</label>
+					<g:textField name="idCard" value="${client?.idCard}" class="form-control" placeholder="Cedula"/>
+				</div>
+
+				<div class="form-group">
+					<label for="telephone" class="sr-only">telephone</label>
+					<g:textField name="telephones" value="${client?.movistar}" class="form-control" placeholder="Movistar"/>
+				</div>
+
+				<div class="form-group">
+					<label for="telephone" class="sr-only">telephone</label>
+					<g:textField name="telephones" value="${client?.claro}" class="form-control" placeholder="Claro"/>
+				</div>
+
+				<div class="form-group">
+					<label for="telephone" class="sr-only">telephone</label>
+					<g:textField name="telephones" value="${client?.convencional}" class="form-control" placeholder="Convencional"/>
+				</div>
+
 				<g:submitButton name="submit" value="Agregar" class="btn btn-primary btn-block"/>
 			</g:form>
 
@@ -60,5 +88,6 @@
 			</g:hasErrors>
 		</div>
 	</div>
+	<asset:javascript src="addTelephone.js"/>
 </body>
 </html>
