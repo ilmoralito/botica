@@ -8,14 +8,12 @@
 			<h4>Usuarios</h4>
 			<table class="table table-hover">
 				<colgroup>
-					<col span="1" style="width: 1%;">
-					<col span="1" style="width: 30%;">
-					<col span="1" style="width: 30%;">
-					<col span="1" style="width: 30%;">
-					<col span="1" style="width: 9%;">
+					<col span="1" style="width: 25%;">
+					<col span="1" style="width: 25%;">
+					<col span="1" style="width: 25%;">
+					<col span="1" style="width: 25%;">
 				</colgroup>
 				<thead>
-					<th></th>
 					<th>Nombre completo</th>
 					<th>Nombre de usuario</th>
 					<th>Roles</th>
@@ -26,10 +24,9 @@
 						<tr>
 							<td>
 								<g:link action="show" id="${user.id}">
-									<span class="glyphicon glyphicon-pencil"></span>
+									${user.fullName}
 								</g:link>
 							</td>
-							<td>${user.fullName}</td>
 							<td>${user.username}</td>
 							<td>${user.authorities.authority.join(", ")}</td>
 							<td><botica:userStatus enabled="${user.enabled}"/></td>
