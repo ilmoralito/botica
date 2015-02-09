@@ -7,7 +7,7 @@
 		<g:if test="${laboratories}">
 			<table class="table table-hover">
 				<thead>
-					<th>Nombre de laboratorio</th>
+					<th>Laboratorios</th>
 				</thead>
 				<tbody>
 					<g:each in="${laboratories}" var="laboratory">
