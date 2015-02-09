@@ -15,6 +15,10 @@ class Laboratory {
   	name blank:false, unique:true
   }
 
+  static mapping = {
+    sort dateCreated: "desc"
+  }
+
   def beforeUpdate() {
   	name = name.toUpperCase()
   }
