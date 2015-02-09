@@ -21,9 +21,11 @@
 
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
-	        <!--<li><a href="#">Link</a></li>-->
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+	          	${applicationContext.springSecurityService.currentUser?.fullName}
+	          	<span class="caret"></span>
+	          </a>
 	          <ul class="dropdown-menu" role="menu">
 	            <li class="${actionName == 'profile' ? 'active' : ''}">
 	            	<g:link controller="user">Perfil</g:link>
