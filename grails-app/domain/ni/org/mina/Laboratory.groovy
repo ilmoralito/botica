@@ -1,7 +1,9 @@
 package ni.org.mina
 
 import org.grails.databinding.BindUsing
+import groovy.transform.ToString
 
+@ToString(includeNames=true, includeFields=true)
 class Laboratory {
 	@BindUsing({
     obj, source -> source["name"]?.toUpperCase()
