@@ -11,11 +11,8 @@
 		<div class="col-md-2">
 			<g:render template="/layouts/sidebar"/>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-10">
 			<g:pageProperty name="page.main"/>
-		</div>
-		<div class="col-md-2">
-			<g:pageProperty name="page.action"/>
 		</div>
 	</div>
 </body>

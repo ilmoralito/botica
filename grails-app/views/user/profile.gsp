@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name='layout' content='private'/>
-	<title>${user?.fullName}</title>
-</head>
-<body>
-	<div class="col-md-4">
+<g:applyLayout name="twoBlocks">
+	<head>
+		<title>${user?.fullName}</title>
+	</head>
+
+	<content tag="main">
 		<h4>Actualizar perfil</h4>
 		<g:form autocomplete="off">
 			<g:render template="form"/>
@@ -31,6 +28,5 @@
 		
 			<g:submitButton name="submit" value="Confirmar" class="btn btn-primary"/>
 		</g:form>
-	</div>
-</body>
-</html>
+	</content>
+</g:applyLayout>
